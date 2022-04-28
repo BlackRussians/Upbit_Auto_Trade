@@ -10,14 +10,12 @@ class Loading(QWidget, Ui_Form):
         super(Loading, self).__init__(parent)
         self.setupUi(self)
         self.center()
-        # self.show()
 
         gif_path = os.path.join(os.path.dirname(__file__), '../data/loading.gif')
         self.movie = QMovie(gif_path, QByteArray(), self)
         self.movie.setCacheMode(QMovie.CacheAll)
         # QLabel에 동적 이미지 삽입
         self.label.setMovie(self.movie)
-        # self.movie.start()
 
         self.setWindowFlags(Qt.FramelessWindowHint)
 

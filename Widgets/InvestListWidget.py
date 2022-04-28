@@ -94,7 +94,6 @@ class InvestListWidget(QWidget, Ui_Form):
         coin_regex = re.compile("[A-Z0-9]+")
         if coin in [c["currency"] for c in self.coin_list]:
             for row in range(self.investListTable.rowCount()):
-                # print(coin_regex.search(self.investListTable.item(row, 0).text()).group(), coin)
                 if coin_regex.search(self.investListTable.item(row, 0).text()).group() == coin:
                     # 평가금액
                     calculated_price = QTableWidgetItem(f"{int(np.ceil(datas[0] * self.coin_list[row]['balance'])):,} KRW")
@@ -102,11 +101,6 @@ class InvestListWidget(QWidget, Ui_Form):
                     profit = QTableWidgetItem(
                         f"{(datas[0] / self.coin_list[row]['avg_buy_price'] - 1) * 100:.2f} %\n"
                         f"{int(np.ceil(datas[0] * self.coin_list[row]['balance'] - self.coin_list[row]['total_buy_price'])):,} KRW")
-                    # 평가손익이 손해구간일 때
-                    # if datas[0] * self.coin_list[row]['balance'] < self.coin_list[row]['total_buy_price']:
-                    #     profit = QTableWidgetItem(
-                    #         f"{(np.ceil(datas[0] * self.coin_list[row]['balance']) / self.coin_list[row]['total_buy_price'] - 1) * 100:.2f}%\n"
-                    #         f"{int(datas[0] * self.coin_list[row]['balance'] - self.coin_list[row]['total_buy_price']):,}")
                     self.investListTable.setItem(row, 4, calculated_price)
                     self.investListTable.setItem(row, 5, profit)
             self.resize_section()

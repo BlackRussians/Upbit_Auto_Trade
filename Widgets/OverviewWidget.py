@@ -1,9 +1,6 @@
 import sys
-import pyupbit
-
 from PySide6.QtCore import Slot, QStringListModel
 from PySide6.QtWidgets import QWidget, QApplication, QCompleter
-
 from Widgets.InvestListWidget import InvestListWidget
 from util.Loading import Loading
 from UI.OverviewUI import Ui_Form
@@ -15,9 +12,6 @@ class OverviewWidget(QWidget, Ui_Form):
         super().__init__(parent)
         self.setupUi(self)
         self.ticker = ticker
-        # self.tickers = [x for x in pyupbit.get_tickers(verbose=True) if x['market'].startswith('KRW')]
-        # self.markets = [x['market'] for x in self.tickers]
-        # self.tickers_kor = [x['korean_name'] for x in self.tickers]
         self.loading = Loading(self)  # loading 위젯 로드
         self.getTicker = Ticker()
         self.investListWidget = InvestListWidget()
@@ -32,12 +26,6 @@ class OverviewWidget(QWidget, Ui_Form):
         self.ticker_cb.currentIndexChanged.connect(self.select_ticker)
 
         self.loading.start()
-
-
-        # self.ovw = OverviewWorker(self.getTicker.markets)
-        # self.ovw.dataSent.connect(self.set_data)
-        # self.ovw.dataSent.connect(self.investListWidget.set_data)
-        # self.ovw.start()
 
     def select_ticker(self):
         # 한글 이름을 market_code로 변경

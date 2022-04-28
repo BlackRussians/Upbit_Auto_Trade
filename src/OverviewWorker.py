@@ -8,9 +8,7 @@ class OverviewWorker(QThread):
     def __init__(self, markets):
         super().__init__()
         self.markets = markets
-        # self.ticker = ticker  # 현재 선택 중인 ticker
         self.alive = True
-        # self.loading = loading
 
     def close(self):
         self.alive = False

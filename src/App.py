@@ -57,10 +57,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.configDialog.exec():
             self.configDialog.check_config()
             self.update_login_data()
-            # self.textEdit.append("확인")
         else:
             self.configDialog.reload_list()
-            # self.textEdit.append("Cancel")
             pass
 
     def exit_event(self):
